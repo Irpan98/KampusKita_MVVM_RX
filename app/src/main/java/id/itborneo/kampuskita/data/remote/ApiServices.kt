@@ -4,6 +4,8 @@ package id.itborneo.kampuskita.data.remote
 import id.itborneo.kampuskita.data.model.Mahasiswa
 import id.itborneo.kampuskita.data.response.MahasiswaReponse
 import id.itborneo.kampuskita.data.response.PostResponse
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -14,7 +16,7 @@ interface ApiServices {
 
     @GET("getData.php")
 
-    fun getMahasiswa(): Call<MahasiswaReponse>
+    fun getMahasiswa(): Flowable<MahasiswaReponse>
 
 
     @FormUrlEncoded
@@ -24,24 +26,23 @@ interface ApiServices {
         @Field("contact") contact: Long,
         @Field("address") address: String
 
-    ): Call<PostResponse>
+    ): Single<PostResponse>
 
     @FormUrlEncoded
     @POST("updateData.php")
     fun updateMahasiswsa(
         @Field("id") id: Int,
         @Field("name") nama: String,
-        @Field("contact") contact: Int,
+        @Field("contact") contact: Long,
         @Field("address") address: String
 
-    ): Call<PostResponse>
+    ): Single<PostResponse>
 
     @FormUrlEncoded
     @POST("deleteData.php")
     fun deleteMahasiswa(
         @Field("id") id: Int
-    ): Call<PostResponse>
-
+    ): Single<PostResponse>
 
 
 }

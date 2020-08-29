@@ -9,6 +9,7 @@ import id.itborneo.kampuskita.data.response.PostResponse
 class MainViewModel : ViewModel() {
     private var TAG = "MainViewModel"
 
+
     fun getMahasiswa(): LiveData<List<Mahasiswa>> {
         return Repository.getMahasiswa()
     }
